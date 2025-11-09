@@ -1,0 +1,110 @@
+I.I. Introduction
+The phenomenon of fluidisation can best be visualised in terms of
+a simple experiment in which a bed of solid particles is supported on
+a horizontal gauze in a vertical tube. Gas or liquid is then forced to
+flow upwards through the gauze, and so through the particle bed.
+This flow causes a pressure drop across the bed, and when this
+pressure drop is sufficient to support the weight of the particles the
+bed is said to be incipiently fluidised. Any further increase in flow
+causes the bed to expand to accommodate the increase. The fluidised
+bed thus formed has many of the properties of a liquid; its upper
+surface remains horizontal when the containing apparatus is tilted,
+and it hardly impedes the movement of objects floated on the surface.
+When the flow of gas or liquid through the bed is increased still
+further, to the point at which the flow velocity becomes greater than
+the free-falling velocity of the particles, then, clearly, the particles
+are carried out of the apparatus.
+
+1.2. The uses of fluidised systems
+A fluidised system has a number of highly useful properties, the
+more important being concerned with temperature control and heat
+transfer, continuity of operation, and catalytic reactions.
+
+Temperature control and heat transfer
+The same temperature is quickly established throughout a
+fluidised system because the general agitation of the particles dis-
+perses local regions of hot or cold. A fluidised bed is therefore very
+suitable for catalytic reactions requiring close temperature control.
+There is also a high rate of heat transfer to a solid object placed in the
+bed, so that it is a very convenient heat transfer medium; for this
+reason a gas-fluidised bed can be used as a constant temperature
+bath in which to immerse a reaction vessel that has to be at a high
+temperature (Adams, Gernand and Kimberlin, 1954).
+
+Continuity of operation
+A fluidised system enables solid particles to be handled essentially
+as a liquid, and this can be a very considerable asset in the design of
+a continuous process. The addition and withdrawal of solid particles
+from the process equipment is also facilitated.
+
+Catalytic reactions
+Fluidisation is an excellent way of bringing a gas into contact with
+a solid, and therefore catalytic reactions are often well suited to the
+technique. Fluidised beds first became of major importance through
+the development of a fluidised process for cracking heavy hydro-
+carbons into petroleum spirit (Murphree, Brown, Fischer, Gohr
+and Sweeney, 1943).
+The applications of fluidisation fall into two broad categories
+(i) chemical reactions and catalysis, and (ii) physical and mechanica
+processes. The drying of solid particles (Jobes, 1954) is an example
+of (ii). Apart from fluid catalytic cracking, the chemical uses of
+fluidisation have also included the Fischer-Tropsch process (Hal
+and Crumley, 1952), the roasting of pyrites (Thompson and
+MacAskill, 1955), and the reduction and fluorination of uranium
+(Hawthorn, Shortis and Lloyd, 1960). This brief list of application
+is only intended to be illustrative; it is by no means exhaustive
+Zenz and Othmer (1960) describe some 20 uses of fluidisation, and
+they refer to 50 more.
+
+The disadvantages of fluidised systems
+A fluidised bed is not suitable for all fluid-solids processes, and
+considerable difficulties have arisen in the past when some of its
+disadvantages have not been clearly recognised, for instance:
+(i) The quick equilibration of temperature in a fluidised system
+means that it is unsuitable for a reaction which is best carried out in
+a reactor giving a temperature gradient along the reaction path.
+(ii) The ease with which particles can be fluidised can var
+enormously, and thus a fluidised process is usually precluded fo
+particles which do not flow freely or which agglomerate (e.g. waxes)
+(iii) The bubbles of gas characteristic of most gas-solids bed
+can cause both chemical and mechanical difficulties. For instance
+
+in a gas-solids reaction, it is possible for some of the gas in the
+bubbles to by-pass the particles altogether, and so the overall
+efficiency of contact is lowered. The bubbles can also cause
+mechanical buffeting sufficient to cause breakage when, for
+example, weak fabric or paper is dried in a hot fluidised bed.
+
+1.3. Definitions
+
+Typical results for a gas-fluidised bed of particles are shown in
+fig. I; the pressure drop across the bed, and its height, are plotted
+as functions of the superficial gas velocity. There is marked
+hysteresis, so that for slowly increasing flow the curves A are
+generated, while the curves D are for slowly decreasing flow; the
+amount of hysteresis depends upon the degree of consolidation of
+the original bed. At point B, the overall pressure drop is slightly
+more than enough to support the weight of the particles, owing to
+the wedging action within the bed. A slight increase in flow above
+point B frees the particles, the pressure drop becomes just enough
+to support their weight, and consequently point C is usually defined
+as the point of incipient fluidisation, the superficial gas velocity being
+U. and the voidage fraction, €0 If the flow rate is now slowly
+decreased from point C, the particles are more loosely packed, and
+consequently the bed height is greater and the pressure drop smaller,
+as shown by curves D. By starting with a bed of loosely packed
+particles (one that has just been fluidised) it is possible to get the
+curves for increasing flow-rate to coincide with the curves for
+decreasing flow-rate; the hysteresis is then eliminated.
+Below incipient fluidisation, results similar to those in fig. I are
+obtained for liquid-fluidised beds.
+
+(b) Aggregative fluidisation
+For a gas-fluidised bed in which the gas velocity is greater than
+Uo, some of the gas may pass through the bed as bubbles, and these
+an be seen to burst when they reach the top surface of the bed as
+hown in Plate I. This is commonly known as aggregative fluidisation,
+nd usually occurs when solids are fluidised by gases. The bubbles
+gitate the bed, and consequently its height fluctuates as indicated
+n region E of fig. I.
+

@@ -1,10 +1,11 @@
 import os
 import time
 
-from components.document_loader import load_documents
+from components.document_loader import load_documents_lazy
 from components.text_splitter import split_documents
 from components.embedding_model import get_embedding_model
-from components.vector_store import create_vector_store
+from components.vector_store import create_vector_store_from_iterator
+
 
 from config import DATA_DIRECTORY, VECTOR_DB_PATH, EMBEDDING_MODEL_NAME
 
@@ -16,7 +17,6 @@ def main():
     print("Starting document ingestion pipeline...")
     start_time = time.time()
 
-    # --- 1. Load Documents ---
     # Create data directory if it doesn't exist
     if not os.path.exists(DATA_DIRECTORY):
         print(f"Creating data directory: {DATA_DIRECTORY}")
@@ -30,23 +30,30 @@ def main():
                     "Created placeholder.txt. Please add your own .txt files to the 'data' directory for ingestion."
                 )
 
-    documents = load_documents(DATA_DIRECTORY)
-    if not documents:
-        print("Pipeline stopped: No documents to process.")
-        return
-
-    # --- 2. Split Documents ---
-    chunks = split_documents(documents)
-    if not chunks:
-        print("Pipeline stopped: No chunks were created from the documents.")
-        return
-
-    # --- 3. Initialize Embedding Model ---
+    # --- Initialize Components ---
+    print("Loading embedding model...")
     embeddings = get_embedding_model(EMBEDDING_MODEL_NAME)
 
-    # --- 4. Create and Save Vector Store ---
-    print("Creating and saving vector store... This may take a while.")
-    vector_store = create_vector_store(chunks, embeddings, VECTOR_DB_PATH)
+    print("Setting up lazy document loader...")
+    document_iterator = load_documents_lazy(DATA_DIRECTORY)
+
+    MODEL_SAFE_CHUNK_SIZE = 1000
+    MODEL_SAFE_CHUNK_OVERLAP = 200
+
+    splitter_with_args = lambda docs: split_documents(
+        docs, 
+        chunk_size=MODEL_SAFE_CHUNK_SIZE, 
+        chunk_overlap=MODEL_SAFE_CHUNK_OVERLAP
+    )
+
+    # create and store vector store
+    vector_store = create_vector_store_from_iterator(
+        document_iterator=document_iterator,
+        text_splitter_func=splitter_with_args,  # Pass the splitter function
+        embedding_model=embeddings,
+        db_path=VECTOR_DB_PATH,
+        batch_size=100,
+    )
 
     if vector_store:
         print("\nPipeline Completed Successfully!")

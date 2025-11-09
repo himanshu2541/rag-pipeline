@@ -6,6 +6,10 @@ dist/
 wheels/
 *.egg-info
 
+# FAISS index files
+faiss_index/
+test_faiss_index/
+
 # Virtual environments
 .venv
 

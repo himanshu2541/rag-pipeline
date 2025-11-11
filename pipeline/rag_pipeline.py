@@ -5,11 +5,13 @@ import time
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_classic.schema.runnable import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-from langchain_huggingface import HuggingFacePipeline
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
-from langchain_openai import ChatOpenAI
-from langchain_core.runnables import RunnableLambda
 
+# uncomment if you want to use local huggingface model
+# from langchain_huggingface import HuggingFacePipeline
+# from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
+# from langchain_core.runnables import RunnableLambda
+
+from langchain_openai import ChatOpenAI
 from components.get_retriever import get_retriever
 from components.format_docs import format_docs
 

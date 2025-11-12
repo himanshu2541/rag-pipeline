@@ -30,13 +30,3 @@ def get_embedding_model(model_name="all-MiniLm-L6-v2", device="cpu"):
 
     print("Embedding model initialized successfully.")
     return embeddings
-
-if __name__ == '__main__':
-    # simple test 
-    embeddings = get_embedding_model()
-    
-    print("\n--- Test Embed ---")
-    test_vector = embeddings.embed_query("This is a test sentence.")
-    print(f"Embedding model is working.")
-    print(f"Test vector length: {len(test_vector)}")
-    print("------------------")

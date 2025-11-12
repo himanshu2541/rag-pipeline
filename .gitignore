@@ -10,6 +10,9 @@ wheels/
 faiss_index/
 test_faiss_index/
 
+# BM25 index files
+bm25_index.pkl
+
 # Virtual environments
 .venv
 

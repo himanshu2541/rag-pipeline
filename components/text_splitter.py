@@ -25,19 +25,3 @@ def split_documents(documents, chunk_size=1000, chunk_overlap=200):
 
   print(f"Successfully split into {len(chunks)} chunks.")
   return chunks
-
-if __name__ == '__main__':
-  # Simple test
-  from langchain_community.docstore.document import Document
-
-  test_docs = [
-    Document(page_content= "This is a very long long string of text that need to be split." * 100, metadata={"source": "test.txt"})
-  ]
-
-  chunks = split_documents(test_docs, chunk_size=100, chunk_overlap=20)
-
-  print("\n--- Test Split ---")
-  print(f"Split into {len(chunks)} chunks.")
-  print(f"First chunk: {chunks[0].page_content}")
-  print(f"First chunk metadata: {chunks[0].metadata}")
-  print("------------------")

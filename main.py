@@ -1,14 +1,12 @@
 import sys
-import time
 import asyncio
 
-from pipeline.ingestion_pipeline import main as run_ingestion
-from pipeline.retrieval_pipeline import query_vector_store as run_retrieval
-from pipeline.rag_pipeline import main as run_rag
+from config import Config
+from rag_system import RAGSystem
 
 
 def print_help():
-    print("\n--- RAG Pipeline ---")
+    print("\n--- RAG Pipeline (Class-Based) ---")
     print("Usage: python main.py [command] [options]")
     print("\nCommands:")
     print("  --ingest              Run the document ingestion pipeline.")
@@ -31,11 +29,21 @@ def print_help():
     )
 
 
-def main_app():
+async def main_async():
+    """
+    Asynchronous main function to run the RAG system.
+    """
     print("\n===================================")
-    print(f" Main Application started")
+    print(" Main Application started")
     print("===================================")
-    start_time = time.time()
+
+    # Initialize the system with the configuration
+    try:
+        config = Config()
+        rag_system = RAGSystem(config)
+    except Exception as e:
+        print(f"Failed to initialize RAGSystem: {e}")
+        return
 
     if len(sys.argv) < 2:
         print("No command provided.")
@@ -44,47 +52,39 @@ def main_app():
 
     command = sys.argv[1]
 
-    if command == "--ingest":
-        print("[main.py] Calling the ingestion pipeline module...")
-        run_ingestion()
-        print("[main.py] Ingestion pipeline module finished.")
+    try:
+        if command == "--ingest":
+            await rag_system.run_ingestion()
 
-    elif command == "--retrieve":
-        if len(sys.argv) > 2:
-            query_text = " ".join(sys.argv[2:])
-            print(f'[main.py] Retrieve Query: "{query_text}"')
-            print("[main.py] Calling the retrieval-only pipeline module...")
-            run_retrieval(query_text)
-            print("[main.py] Retrieval-only pipeline module finished.")
+        elif command == "--retrieve":
+            if len(sys.argv) > 2:
+                query_text = " ".join(sys.argv[2:])
+                print(f'[main.py] Retrieve Query: "{query_text}"')
+                await rag_system.retrieve_chunks(query_text)
+            else:
+                print("Error: --retrieve command requires text.")
+                print('Example: python main.py --retrieve "What is RAG?"')
+
+        elif command == "--ask":
+            if len(sys.argv) > 2:
+                query_text = " ".join(sys.argv[2:])
+                print(f'[main.py] RAG Question: "{query_text}"')
+                await rag_system.ask_question(query_text)
+            else:
+                print("Error: --ask command requires text.")
+                print('Example: python main.py --ask "What is RAG?"')
+
         else:
-            print("Error: --retrieve command requires text.")
-            print('Example: python main.py --retrieve "What is RAG?"')
+            print(f"Error: Unknown command '{command}'")
+            print_help()
+            
+    except Exception as e:
+        print(f"\n[main.py] An unexpected error occurred: {e}")
 
-    elif command == "--ask":
-        if len(sys.argv) > 2:
-            query_text = " ".join(sys.argv[2:])
-            print(f'[main.py] RAG Question: "{query_text}"')
-            print("[main.py] Calling the full RAG pipeline (async)...")
-
-            try:
-                asyncio.run(run_rag(query_text))
-            except Exception as e:
-                print(f"\n[main.py] An error occurred during the RAG pipeline: {e}")
-
-            print("[main.py] Full RAG pipeline finished.")
-        else:
-            print("Error: --ask command requires text.")
-            print('Example: python main.py --ask "What is RAG?"')
-
-    else:
-        print(f"Error: Unknown command '{command}'")
-        print_help()
-
-    end_time = time.time()
     print("\n===================================")
-    print(f" Main Application Finished (Total time: {end_time - start_time:.2f}s)")
+    print(" Main Application Finished")
     print("===================================")
 
 
 if __name__ == "__main__":
-    main_app()
+    asyncio.run(main_async())

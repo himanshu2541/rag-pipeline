@@ -22,6 +22,20 @@ class RetrieverProvider:
                 "Please run the --ingest command first."
             )
 
+    def _load_faiss_store(self):
+        """
+        Internal helper to load the FAISS vector store.
+        """
+        if not os.path.exists(self.config.VECTOR_DB_PATH):
+            raise FileNotFoundError(f"Vector store not found at {self.config.VECTOR_DB_PATH}.")
+        
+        return FAISS.load_local(
+            self.config.VECTOR_DB_PATH,
+            self.embeddings,
+            allow_dangerous_deserialization=True,
+        )
+    
+
     def _build_and_save_bm25(self, vector_store):
         """
         Build the BM25 index from the FAISS docstore and save it to a pickle file (one-time operation, Memory-intensive).
@@ -57,6 +71,12 @@ class RetrieverProvider:
         
         return bm25_retriever
     
+    def get_vector_store(self):
+        """
+        Public method to get the FAISS vector store.
+        """
+        return self._load_faiss_store()
+    
     def get_retriever(self):
         """
         Loads and returns the ensemble retriever.
@@ -65,11 +85,7 @@ class RetrieverProvider:
 
         # 1. Load FAISS Retriever
         print("Loading FAISS vector store...")
-        vector_store = FAISS.load_local(
-            self.config.VECTOR_DB_PATH,
-            self.embeddings,
-            allow_dangerous_deserialization=True,
-        )
+        vector_store = self._load_faiss_store()
         faiss_retriever = vector_store.as_retriever(
             search_kwargs={"k": self.config.FAISS_RETRIEVER_K}
         )

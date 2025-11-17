@@ -36,7 +36,7 @@ class ChainProvider:
 
         
     
-    # Local testing purpose
+    # For CLI purpose
     def get_chain(self, retriever, llm):
         """
         Builds and returns the RAG chain.

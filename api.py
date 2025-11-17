@@ -70,7 +70,6 @@ async def upload_document(file: UploadFile = File(...)):
         
         # Get the RAG system
         rag_system = get_rag_system()
-      
         safe_filename = file.filename or "uploaded.txt"
         
         # Ingest the content
